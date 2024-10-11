@@ -22,7 +22,6 @@ export interface IGetReadings extends IRequestContext {
 }
 export interface ICreateReading extends IRequestContext {
   input: {
-    id: number;
     id_usuario: number;
     numero_medidor: number;
     numero_cliente: number;
@@ -37,7 +36,8 @@ export interface ICreateReading extends IRequestContext {
     lectura: number;
     lectura_ant: number;
     bis: string;
-    fecha_sincronizacion: Date;
+    id?: number;
+    fecha_sincronizacion?: Date;
   };
 }
 export interface IGetReading extends IRequestContext {

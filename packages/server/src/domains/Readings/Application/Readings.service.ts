@@ -17,9 +17,9 @@ import {
 
 export class ReadingsService {
   constructor(
-    private readonly _createReading: CreateReading,
-    private readonly _deleteReading: DeleteReading,
-    private readonly _updateReading: UpdateReading,
+    private readonly _Create: CreateReading,
+    private readonly _Delete: DeleteReading,
+    private readonly _Update: UpdateReading,
     private readonly _getAllReadings: GetAllReadings,
     private readonly _getReading: GetReading,
   ) {}
@@ -29,7 +29,7 @@ export class ReadingsService {
     requestContext,
   }: ICreateReading): Promise<Reading | null> {
     return executeUseCase({
-      useCase: this._createReading,
+      useCase: this._Create,
       input,
       requestContext,
     });
@@ -40,7 +40,7 @@ export class ReadingsService {
     requestContext,
   }: IDeleteReading): Promise<number | null> {
     return executeUseCase({
-      useCase: this._deleteReading,
+      useCase: this._Delete,
       input,
       requestContext,
     });
@@ -51,7 +51,7 @@ export class ReadingsService {
     requestContext,
   }: IUpdateReading): Promise<Reading> {
     return executeUseCase({
-      useCase: this._updateReading,
+      useCase: this._Update,
       input,
       requestContext,
     });

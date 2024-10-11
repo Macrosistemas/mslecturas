@@ -3,10 +3,7 @@ import { ReadingsRepository } from '../Readings.repository';
 import { IDeleteReading } from '../Readings.interfaces';
 
 export class DeleteReading implements IUseCase<number | null> {
-  constructor(
-    private readonly readingsRepository: ReadingsRepository,
-    private readonly _Delete: DeleteReading,
-  ) {}
+  constructor(private readonly readingsRepository: ReadingsRepository) {}
 
   async execute({
     input,
@@ -25,7 +22,6 @@ export class DeleteReading implements IUseCase<number | null> {
       return id;
     } else {
       throw new AppError('No se puede Ingresar Registro');
-      return null;
     }
   }
 }

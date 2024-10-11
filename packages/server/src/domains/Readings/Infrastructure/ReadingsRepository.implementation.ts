@@ -191,7 +191,7 @@ export class ReadingsRepositoryImplementation implements ReadingsRepository {
     });
   }
 
-  async update({ reading }: IUpdateReadingRepository): Promise<number | null> {
+  async update({ reading }: IUpdateReadingRepository): Promise<Reading | null> {
     const {
       id,
       id_usuario,
@@ -233,7 +233,7 @@ export class ReadingsRepositoryImplementation implements ReadingsRepository {
     );
 
     if (!id || !rowsAffected[0]) return null;
-    return id;
+    return reading;
   }
 
   async delete({ id }: IDeleteReadingRepository): Promise<number | null> {

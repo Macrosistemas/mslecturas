@@ -36,7 +36,7 @@ export interface IDeleteReadingRepository extends IRequestContext {
 export interface ReadingsRepository {
   getReadings(params: IGetReadingsRepository): Promise<Reading[]>;
   create(params: ICreateReadingRepository): Promise<Reading | null>;
-  update(params: IUpdateReadingRepository): Promise<number | null>;
+  update(params: IUpdateReadingRepository): Promise<Reading | null>;
   delete(params: IDeleteReadingRepository): Promise<number | null>;
   getReading(params: IGetReadingRepository): Promise<Reading | null>;
 }

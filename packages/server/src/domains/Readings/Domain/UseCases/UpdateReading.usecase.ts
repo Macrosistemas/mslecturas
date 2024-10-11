@@ -1,30 +1,13 @@
-import { IUseCase } from '@server/Application';
-import { Reading, IReadingInput } from '../Readings.entity';
+import { AppError, IUseCase } from '@server/Application';
+import { Reading } from '../Readings.entity';
 import { ReadingsRepository } from '../Readings.repository';
+import { IUpdateReading } from '../Readings.interfaces';
 
 export class UpdateReading implements IUseCase<Reading> {
-  constructor(private readonly readingRepository: ReadingsRepository) {}
+  constructor(private readonly readingsRepository: ReadingsRepository) {}
 
-  async execute({
-    id,
-    id_usuario,
-    numero_medidor,
-    numero_cliente,
-    denominacion_cliente,
-    codigo_calle,
-    denominacion_calle,
-    altura,
-    piso,
-    dpto,
-    fecha_lectura,
-    fecha_lectura_ant,
-    lectura,
-    lectura_ant,
-    bis,
-    fecha_sincronizacion,
-  }: IReadingInput): Promise<Reading> {
-    const newReading = new Reading(
-      id,
+  async execute({ input, requestContext }: IUpdateReading): Promise<Reading> {
+    const {
       id_usuario,
       numero_medidor,
       numero_cliente,
@@ -39,8 +22,37 @@ export class UpdateReading implements IUseCase<Reading> {
       lectura,
       lectura_ant,
       bis,
+      id,
       fecha_sincronizacion,
-    );
-    return await this.readingRepository.update(newReading);
+    } = input;
+
+    const updReading = Reading.create({
+      id_usuario,
+      numero_medidor,
+      numero_cliente,
+      denominacion_cliente,
+      codigo_calle,
+      denominacion_calle,
+      altura,
+      piso,
+      dpto,
+      fecha_lectura,
+      fecha_lectura_ant,
+      lectura,
+      lectura_ant,
+      bis,
+      id,
+      fecha_sincronizacion,
+    });
+
+    const reading = await this.readingsRepository.update({
+      reading: updReading,
+      requestContext,
+    });
+
+    if (!reading) {
+      throw new AppError('No se puede Ingresar Registro');
+    }
+    return reading;
   }
 }

@@ -1,4 +1,4 @@
-import { protectedProcedure } from '@server/Infrastructure';
+import { procedure, protectedProcedure } from '@server/Infrastructure';
 import { ReadingsService } from '../../Application';
 import { executeService, executeServiceAlone } from '@server/Application';
 import z from 'zod';
@@ -20,7 +20,7 @@ export class ReadingController {
       ),
     );
 
-  createReading = protectedProcedure
+  createReading = procedure
     .input(
       z.object({
         id: z.number(),
@@ -29,7 +29,7 @@ export class ReadingController {
         numero_cliente: z.number(),
         denominacion_cliente: z.string(),
         codigo_calle: z.number(),
-        denominacion_calle: z.number(),
+        denominacion_calle: z.string(),
         altura: z.number(),
         piso: z.string(),
         dpto: z.string(),
@@ -41,11 +41,14 @@ export class ReadingController {
         fecha_sincronizacion: z.date(),
       }),
     )
-    .mutation(
-      executeService(
-        this.readingsService.createReading.bind(this.readingsService),
-      ),
-    );
+    .mutation(async ({ ctx, input }) => {
+      const response = await this.readingsService.createReading({
+        input,
+        requestContext: ctx.requestContext,
+      });
+
+      return response;
+    });
 
   deleteReading = protectedProcedure
     .input(z.number().min(1, 'ID es requerida'))
@@ -64,7 +67,7 @@ export class ReadingController {
         numero_cliente: z.number(),
         denominacion_cliente: z.string(),
         codigo_calle: z.number(),
-        denominacion_calle: z.number(),
+        denominacion_calle: z.string(),
         altura: z.number(),
         piso: z.string(),
         dpto: z.string(),
@@ -79,19 +82,6 @@ export class ReadingController {
     .mutation(
       executeService(
         this.readingsService.updateReading.bind(this.readingsService),
-      ),
-    );
-
-  getInfoReading = protectedProcedure
-    .input(
-      z.object({
-        paramId: z.number().min(1, 'ID Requerida de tipo number'),
-        params: z.union([z.string(), z.array(z.string())]),
-      }),
-    )
-    .query(
-      executeService(
-        this.readingsService.getInfoReading.bind(this.readingsService),
       ),
     );
 }
