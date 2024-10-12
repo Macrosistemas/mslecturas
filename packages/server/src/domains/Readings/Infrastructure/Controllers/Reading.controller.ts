@@ -33,12 +33,12 @@ export class ReadingController {
         altura: z.number(),
         piso: z.string(),
         dpto: z.string(),
-        fecha_lectura: z.date(),
-        fecha_lectura_ant: z.date(),
+        fecha_lectura: z.string().transform((val) => new Date(val)),
+        fecha_lectura_ant: z.string().transform((val) => new Date(val)),
         lectura: z.number(),
         lectura_ant: z.number(),
         bis: z.string(),
-        fecha_sincronizacion: z.date(),
+        fecha_sincronizacion: z.string().transform((val) => new Date(val)),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -71,12 +71,12 @@ export class ReadingController {
         altura: z.number(),
         piso: z.string(),
         dpto: z.string(),
-        fecha_lectura: z.date(),
-        fecha_lectura_ant: z.date(),
+        fecha_lectura: z.string().transform((val) => new Date(val)),
+        fecha_lectura_ant: z.string().transform((val) => new Date(val)),
         lectura: z.number(),
         lectura_ant: z.number(),
         bis: z.string(),
-        fecha_sincronizacion: z.date(),
+        fecha_sincronizacion: z.string().transform((val) => new Date(val)),
       }),
     )
     .mutation(

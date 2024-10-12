@@ -44,6 +44,7 @@ export class CreateReading implements IUseCase<Reading> {
       id,
       fecha_sincronizacion,
     });
+    console.log('readingsRepository.create');
 
     const reading = await this.readingsRepository.create({
       reading: newReading,

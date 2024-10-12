@@ -28,6 +28,8 @@ export class ReadingsService {
     input,
     requestContext,
   }: ICreateReading): Promise<Reading | null> {
+    console.log('createReading');
+
     return executeUseCase({
       useCase: this._Create,
       input,
