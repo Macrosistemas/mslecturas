@@ -12,9 +12,6 @@ export class GetAllReadings implements IUseCase<Reading[]> {
     filters,
     requestContext,
   }: IGetReadingsRepository): Promise<Reading[]> {
-    console.log('GetAllReadings-filters');
-    console.log(filters);
-
     return await this.readingsRepository.getReadings({
       filters,
       requestContext,
