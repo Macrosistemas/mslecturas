@@ -6,13 +6,11 @@ import {
   Model,
   CreationOptional,
 } from 'sequelize';
-
-export class ReadingScheme extends Model<
-  InferAttributes<ReadingScheme>,
-  InferCreationAttributes<ReadingScheme>
+export class ReadingModel extends Model<
+  InferAttributes<ReadingModel>,
+  InferCreationAttributes<ReadingModel>
 > {
   declare id: CreationOptional<number>;
-  declare id_usuario: number;
   declare numero_medidor: number;
   declare numero_cliente: number;
   declare denominacion_cliente: string;
@@ -27,9 +25,10 @@ export class ReadingScheme extends Model<
   declare lectura_ant: number;
   declare bis: string;
   declare fecha_sincronizacion: CreationOptional<Date>;
+  declare id_usuario: number;
 }
 
-ReadingScheme.init(
+ReadingModel.init(
   {
     id: {
       type: DataTypes.BIGINT,
@@ -37,14 +36,22 @@ ReadingScheme.init(
       autoIncrement: true,
       allowNull: false,
     },
-    id_usuario: DataTypes.BIGINT,
-    numero_medidor: DataTypes.BIGINT,
-    numero_cliente: DataTypes.BIGINT,
+    numero_medidor: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+    },
+    numero_cliente: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+    },
     denominacion_cliente: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    codigo_calle: DataTypes.BIGINT,
+    codigo_calle: {
+      type: DataTypes.BIGINT,
+      allowNull: true,
+    },
     denominacion_calle: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -83,6 +90,10 @@ ReadingScheme.init(
     },
     fecha_sincronizacion: {
       type: DataTypes.DATE,
+      allowNull: true,
+    },
+    id_usuario: {
+      type: DataTypes.BIGINT,
       allowNull: true,
     },
   },

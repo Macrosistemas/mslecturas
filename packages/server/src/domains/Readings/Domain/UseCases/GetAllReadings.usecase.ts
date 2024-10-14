@@ -12,7 +12,7 @@ export class GetAllReadings implements IUseCase<Reading[]> {
     filters,
     requestContext,
   }: IGetReadingsRepository): Promise<Reading[]> {
-    return await this.readingsRepository.getReadings({
+    return await this.readingsRepository.getAllReadings({
       filters,
       requestContext,
     });

@@ -4,7 +4,6 @@ import { Reading } from './Readings.entity';
 export interface IGetReadingsRepository extends IRequestContext {
   filters?: {
     id?: number;
-    id_usuario?: number;
     numero_medidor?: number;
     numero_cliente?: number;
     denominacion_cliente?: string;
@@ -19,6 +18,7 @@ export interface IGetReadingsRepository extends IRequestContext {
     lectura_ant?: number;
     bis?: string;
     fecha_sincronizacion?: Date;
+    id_usuario?: number;
   };
 }
 export interface ICreateReadingRepository extends IRequestContext {
@@ -34,9 +34,9 @@ export interface IDeleteReadingRepository extends IRequestContext {
   id: number;
 }
 export interface ReadingsRepository {
-  getReadings(params: IGetReadingsRepository): Promise<Reading[]>;
+  getAllReadings(params: IGetReadingsRepository): Promise<Reading[]>;
   create(params: ICreateReadingRepository): Promise<Reading | null>;
-  update(params: IUpdateReadingRepository): Promise<Reading | null>;
+  update(params: IUpdateReadingRepository): Promise<number | null>;
   delete(params: IDeleteReadingRepository): Promise<number | null>;
   getReading(params: IGetReadingRepository): Promise<Reading | null>;
 }

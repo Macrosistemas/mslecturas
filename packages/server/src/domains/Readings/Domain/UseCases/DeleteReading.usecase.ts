@@ -1,6 +1,6 @@
 import { AppError, IUseCase } from '@server/Application';
-import { ReadingsRepository } from '../Readings.repository';
 import { IDeleteReading } from '../Readings.interfaces';
+import { ReadingsRepository } from '../Readings.repository';
 
 export class DeleteReading implements IUseCase<number | null> {
   constructor(private readonly readingsRepository: ReadingsRepository) {}
@@ -9,19 +9,19 @@ export class DeleteReading implements IUseCase<number | null> {
     input,
     requestContext,
   }: IDeleteReading): Promise<number | null> {
+    const id = input;
     const reading = await this.readingsRepository.getReading({
-      id: input,
+      id,
       requestContext,
     });
     if (reading) {
       await this.readingsRepository.delete({
-        id: input,
+        id,
         requestContext,
       });
-      const id = input;
       return id;
     } else {
-      throw new AppError('No se puede Ingresar Registro');
+      throw new AppError('No se puede Borrar Registro');
     }
   }
 }

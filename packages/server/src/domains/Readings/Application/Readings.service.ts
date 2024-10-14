@@ -10,9 +10,9 @@ import {
 import {
   ICreateReading,
   IDeleteReading,
+  IGetAllReadings,
   IGetReading,
   IUpdateReading,
-  IGetReadings,
 } from '../Domain';
 
 export class ReadingsService {
@@ -28,15 +28,12 @@ export class ReadingsService {
     input,
     requestContext,
   }: ICreateReading): Promise<Reading | null> {
-    console.log('createReading');
-
     return executeUseCase({
       useCase: this._Create,
       input,
       requestContext,
     });
   }
-
   async deleteReading({
     input,
     requestContext,
@@ -47,11 +44,10 @@ export class ReadingsService {
       requestContext,
     });
   }
-
   async updateReading({
     input,
     requestContext,
-  }: IUpdateReading): Promise<Reading> {
+  }: IUpdateReading): Promise<Reading | null> {
     return executeUseCase({
       useCase: this._Update,
       input,
@@ -62,7 +58,7 @@ export class ReadingsService {
   async getAllReadings({
     input,
     requestContext,
-  }: IGetReadings): Promise<Reading[]> {
+  }: IGetAllReadings): Promise<Reading[]> {
     return executeUseCase({
       useCase: this._getAllReadings,
       input,

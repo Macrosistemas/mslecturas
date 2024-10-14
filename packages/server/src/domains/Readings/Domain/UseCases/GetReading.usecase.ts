@@ -10,12 +10,13 @@ export class GetReading implements IUseCase<Reading | null> {
     input,
     requestContext,
   }: IGetReading): Promise<Reading | null> {
+    const id = input;
     const reading = await this.readingsRepository.getReading({
-      id: input,
+      id,
       requestContext,
     });
 
-    if (!reading) throw new AppError('Reading no encontrado', 404);
+    if (!reading) throw new AppError('Registro no encontrado', 404);
     return reading;
   }
 }

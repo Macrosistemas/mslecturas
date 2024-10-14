@@ -24,7 +24,6 @@ export class ReadingController {
     .input(
       z.object({
         id: z.number(),
-        id_usuario: z.number(),
         numero_medidor: z.number(),
         numero_cliente: z.number(),
         denominacion_cliente: z.string(),
@@ -39,6 +38,7 @@ export class ReadingController {
         lectura_ant: z.number(),
         bis: z.string(),
         fecha_sincronizacion: z.string().transform((val) => new Date(val)),
+        id_usuario: z.number(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -49,7 +49,6 @@ export class ReadingController {
 
       return response;
     });
-
   deleteReading = protectedProcedure
     .input(z.number().min(1, 'ID es requerida'))
     .mutation(
@@ -62,7 +61,6 @@ export class ReadingController {
     .input(
       z.object({
         id: z.number(),
-        id_usuario: z.number(),
         numero_medidor: z.number(),
         numero_cliente: z.number(),
         denominacion_cliente: z.string(),
@@ -77,6 +75,7 @@ export class ReadingController {
         lectura_ant: z.number(),
         bis: z.string(),
         fecha_sincronizacion: z.string().transform((val) => new Date(val)),
+        id_usuario: z.number(),
       }),
     )
     .mutation(

@@ -1,9 +1,7 @@
 import { IRequestContext } from '@server/Application';
-
-export interface IGetReadings extends IRequestContext {
+export interface IGetAllReadings extends IRequestContext {
   input?: {
     id: number;
-    id_usuario: number;
     numero_medidor: number;
     numero_cliente: number;
     denominacion_cliente: string;
@@ -18,11 +16,11 @@ export interface IGetReadings extends IRequestContext {
     lectura_ant: number;
     bis: string;
     fecha_sincronizacion: Date;
+    id_usuario: number;
   };
 }
 export interface ICreateReading extends IRequestContext {
   input: {
-    id_usuario: number;
     numero_medidor: number;
     numero_cliente: number;
     denominacion_cliente: string;
@@ -36,6 +34,7 @@ export interface ICreateReading extends IRequestContext {
     lectura: number;
     lectura_ant: number;
     bis: string;
+    id_usuario: number;
     id?: number;
     fecha_sincronizacion?: Date;
   };
@@ -46,7 +45,6 @@ export interface IGetReading extends IRequestContext {
 export interface IUpdateReading extends IRequestContext {
   input: {
     id: number;
-    id_usuario: number;
     numero_medidor: number;
     numero_cliente: number;
     denominacion_cliente: string;
@@ -61,14 +59,13 @@ export interface IUpdateReading extends IRequestContext {
     lectura_ant: number;
     bis: string;
     fecha_sincronizacion: Date;
+    id_usuario: number;
   };
 }
 export interface IDeleteReading extends IRequestContext {
   input: number;
 }
-
 export interface IReading {
-  id_usuario: number;
   numero_medidor: number;
   numero_cliente: number;
   denominacion_cliente: string;
@@ -82,6 +79,7 @@ export interface IReading {
   lectura: number;
   lectura_ant: number;
   bis: string;
+  id_usuario: number;
   id?: number;
   fecha_sincronizacion?: Date;
 }

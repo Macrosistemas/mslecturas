@@ -1,1 +1,1 @@
-export * from './Reading.scheme';
+export * from './Reading.model';

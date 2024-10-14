@@ -8,7 +8,7 @@ export class CreateReading implements IUseCase<Reading> {
 
   async execute({ input, requestContext }: ICreateReading): Promise<Reading> {
     const {
-      id_usuario,
+      id,
       numero_medidor,
       numero_cliente,
       denominacion_cliente,
@@ -22,12 +22,11 @@ export class CreateReading implements IUseCase<Reading> {
       lectura,
       lectura_ant,
       bis,
-      id,
       fecha_sincronizacion,
+      id_usuario,
     } = input;
-
     const newReading = Reading.create({
-      id_usuario,
+      id,
       numero_medidor,
       numero_cliente,
       denominacion_cliente,
@@ -41,11 +40,9 @@ export class CreateReading implements IUseCase<Reading> {
       lectura,
       lectura_ant,
       bis,
-      id,
       fecha_sincronizacion,
+      id_usuario,
     });
-    console.log('readingsRepository.create');
-
     const reading = await this.readingsRepository.create({
       reading: newReading,
       requestContext,
