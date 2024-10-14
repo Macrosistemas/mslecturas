@@ -1,1 +1,1 @@
-export * from './Module.scheme';
+export * from './Module.model';

@@ -9,11 +9,11 @@ import {
   ModulesRepository,
 } from '../Domain';
 
-import { ModuleScheme } from './Database';
+import { ModuleModel } from './Database';
 
 export class ModulesRepositoryImplementation implements ModulesRepository {
   async getAllModules({ filters }: IGetModulesRepository): Promise<Module[]> {
-    const modules = await ModuleScheme.findAll({
+    const modules = await ModuleModel.findAll({
       attributes: ['id', 'denominacion'],
       where: {
         ...(filters?.id && {
@@ -41,7 +41,7 @@ export class ModulesRepositoryImplementation implements ModulesRepository {
       return null;
     }
     const { id, denominacion } = module.values;
-    const newModule = await ModuleScheme.create({
+    const newModule = await ModuleModel.create({
       id,
       denominacion,
     });
@@ -53,7 +53,7 @@ export class ModulesRepositoryImplementation implements ModulesRepository {
   }
 
   async getModule({ id }: IGetModuleRepository): Promise<Module | null> {
-    const moduleFound = await ModuleScheme.findOne({ where: { id } });
+    const moduleFound = await ModuleModel.findOne({ where: { id } });
     if (!moduleFound) {
       return null;
     }
@@ -66,7 +66,7 @@ export class ModulesRepositoryImplementation implements ModulesRepository {
 
   async update({ module }: IUpdateModuleRepository): Promise<number | null> {
     const { id, denominacion } = module.values;
-    const rowsAffected = await ModuleScheme.update(
+    const rowsAffected = await ModuleModel.update(
       {
         id,
         denominacion,
@@ -79,7 +79,7 @@ export class ModulesRepositoryImplementation implements ModulesRepository {
   }
 
   async delete({ id }: IDeleteModuleRepository): Promise<number | null> {
-    const rowsAffected = await ModuleScheme.destroy({ where: { id } });
+    const rowsAffected = await ModuleModel.destroy({ where: { id } });
     if (rowsAffected === 0) return null;
     return id;
   }

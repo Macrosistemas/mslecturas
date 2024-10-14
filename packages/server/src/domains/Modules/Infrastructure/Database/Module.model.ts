@@ -6,15 +6,15 @@ import {
   Model,
   CreationOptional,
 } from 'sequelize';
-export class ModuleScheme extends Model<
-  InferAttributes<ModuleScheme>,
-  InferCreationAttributes<ModuleScheme>
+export class ModuleModel extends Model<
+  InferAttributes<ModuleModel>,
+  InferCreationAttributes<ModuleModel>
 > {
   declare id: CreationOptional<number>;
   declare denominacion: string;
 }
 
-ModuleScheme.init(
+ModuleModel.init(
   {
     id: {
       type: DataTypes.BIGINT,
