@@ -1,6 +1,5 @@
 import { container } from '@server/utils/Container';
 import { ModulesService } from './Application';
-import { ModuleController } from './Infrastructure/Controllers/Module.controller';
 import { asClass } from 'awilix';
 import {
   GetAllModules,
@@ -9,17 +8,20 @@ import {
   DeleteModule,
   UpdateModule,
 } from './Domain';
-import { ModulesRepositoryImplementation } from './Infrastructure';
+import {
+  ModuleController,
+  ModulesRepositoryImplementation,
+} from './Infrastructure';
 
 container.register({
-  modulesRepository: asClass(ModulesRepositoryImplementation).scoped(),
-  modulesService: asClass(ModulesService).scoped(),
-  moduleController: asClass(ModuleController).scoped(),
-  _getAllModules: asClass(GetAllModules).scoped(),
-  _getModule: asClass(GetModule).scoped(),
-  _Create: asClass(CreateModule).scoped(),
-  _Delete: asClass(DeleteModule).scoped(),
-  _Update: asClass(UpdateModule).scoped(),
+  modulesRepository: asClass(ModulesRepositoryImplementation),
+  modulesService: asClass(ModulesService),
+  moduleController: asClass(ModuleController),
+  _getAllModules: asClass(GetAllModules),
+  _getModule: asClass(GetModule),
+  _Create: asClass(CreateModule),
+  _Delete: asClass(DeleteModule),
+  _Update: asClass(UpdateModule),
 });
 
 export const moduleController =

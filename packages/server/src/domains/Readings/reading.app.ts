@@ -1,7 +1,10 @@
 import { container } from '@server/utils/Container';
 import { ReadingsService } from './Application';
-import { ReadingController } from './Infrastructure/Controllers/Reading.controller';
 import { asClass } from 'awilix';
+import {
+  ReadingController,
+  ReadingsRepositoryImplementation,
+} from './Infrastructure';
 import {
   GetAllReadings,
   GetReading,
@@ -9,17 +12,16 @@ import {
   DeleteReading,
   UpdateReading,
 } from './Domain';
-import { ReadingsRepositoryImplementation } from './Infrastructure';
 
 container.register({
-  readingsRepository: asClass(ReadingsRepositoryImplementation).scoped(),
-  readingsService: asClass(ReadingsService).scoped(),
-  readingController: asClass(ReadingController).scoped(),
-  _getAllReadings: asClass(GetAllReadings).scoped(),
-  _getReading: asClass(GetReading).scoped(),
-  _Create: asClass(CreateReading).scoped(),
-  _Delete: asClass(DeleteReading).scoped(),
-  _Update: asClass(UpdateReading).scoped(),
+  readingsRepository: asClass(ReadingsRepositoryImplementation),
+  readingsService: asClass(ReadingsService),
+  readingController: asClass(ReadingController),
+  _getAllReadings: asClass(GetAllReadings),
+  _getReading: asClass(GetReading),
+  _Create: asClass(CreateReading),
+  _Delete: asClass(DeleteReading),
+  _Update: asClass(UpdateReading),
 });
 
 export const readingController =

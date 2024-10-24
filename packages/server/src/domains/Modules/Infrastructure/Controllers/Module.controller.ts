@@ -6,7 +6,7 @@ import z from 'zod';
 export class ModuleController {
   constructor(private modulesService: ModulesService) {}
 
-  getModules = protectedProcedure.query(
+  getAllModules = protectedProcedure.query(
     executeServiceAlone(
       this.modulesService.getAllModules.bind(this.modulesService),
     ),

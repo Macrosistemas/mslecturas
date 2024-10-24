@@ -1,12 +1,18 @@
-import { readingController } from '../reading.app';
-const { getReadings, createReading, deleteReading, getReading } =
-  readingController;
+import { readingController } from '../../reading.app';
+const {
+  getAllReadings,
+  createReading,
+  deleteReading,
+  getReading,
+  updateReading,
+} = readingController;
 
 export const ReadingRoutes = {
   readings: {
-    getAll: getReadings,
+    getAll: getAllReadings,
     create: createReading,
     delete: deleteReading,
+    update: updateReading,
     get: getReading,
   },
 };

@@ -6,7 +6,7 @@ import z from 'zod';
 export class ReadingController {
   constructor(private readingsService: ReadingsService) {}
 
-  getReadings = protectedProcedure.query(
+  getAllReadings = protectedProcedure.query(
     executeServiceAlone(
       this.readingsService.getAllReadings.bind(this.readingsService),
     ),
