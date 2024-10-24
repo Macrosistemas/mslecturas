@@ -59,6 +59,7 @@ export class ReadingsService {
     input,
     requestContext,
   }: IGetAllReadings): Promise<Reading[]> {
+    console.log('Entro serice getAllReadings');
     return executeUseCase({
       useCase: this._getAllReadings,
       input,

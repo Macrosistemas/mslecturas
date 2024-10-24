@@ -1,19 +1,17 @@
 import { IUseCase } from '@server/Application';
 import { Reading } from '../Readings.entity';
-import {
-  IGetReadingsRepository,
-  ReadingsRepository,
-} from '../Readings.repository';
+import { ReadingsRepository } from '../Readings.repository';
+import { IGetAllReadings } from '../Readings.interfaces';
 
 export class GetAllReadings implements IUseCase<Reading[]> {
   constructor(private readonly readingsRepository: ReadingsRepository) {}
 
   async execute({
-    filters,
+    input,
     requestContext,
-  }: IGetReadingsRepository): Promise<Reading[]> {
+  }: IGetAllReadings): Promise<Reading[]> {
     return await this.readingsRepository.getAllReadings({
-      filters,
+      filters: input,
       requestContext,
     });
   }

@@ -1,16 +1,26 @@
 import { procedure, protectedProcedure } from '@server/Infrastructure';
 import { ReadingsService } from '../../Application';
-import { executeService, executeServiceAlone } from '@server/Application';
+import { executeService } from '@server/Application';
 import z from 'zod';
 
 export class ReadingController {
   constructor(private readingsService: ReadingsService) {}
 
-  getAllReadings = protectedProcedure.query(
-    executeServiceAlone(
-      this.readingsService.getAllReadings.bind(this.readingsService),
-    ),
-  );
+  getAllReadings = protectedProcedure
+    .input(
+      z.object({
+        denominacion_cliente: z.string().default(''),
+        denominacion_calle: z.string().default(''),
+        piso: z.string().default(''),
+        dpto: z.string().default(''),
+        bis: z.string().default(''),
+      }),
+    )
+    .query(
+      executeService(
+        this.readingsService.getAllReadings.bind(this.readingsService),
+      ),
+    );
 
   getReading = protectedProcedure
     .input(z.number().min(1, 'ID is requerida'))

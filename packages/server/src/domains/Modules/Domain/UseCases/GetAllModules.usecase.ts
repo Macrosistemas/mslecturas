@@ -7,8 +7,6 @@ export class GetAllModules implements IUseCase<Module[]> {
   constructor(private readonly modulesRepository: ModulesRepository) {}
 
   async execute({ input, requestContext }: IGetAllModules): Promise<Module[]> {
-    console.log(input);
-
     return await this.modulesRepository.getAllModules({
       filters: input,
       requestContext,

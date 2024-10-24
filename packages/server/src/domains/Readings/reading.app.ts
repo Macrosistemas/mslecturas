@@ -2,16 +2,16 @@ import { container } from '@server/utils/Container';
 import { ReadingsService } from './Application';
 import { asClass } from 'awilix';
 import {
-  ReadingController,
-  ReadingsRepositoryImplementation,
-} from './Infrastructure';
-import {
   GetAllReadings,
   GetReading,
   CreateReading,
   DeleteReading,
   UpdateReading,
 } from './Domain';
+import {
+  ReadingController,
+  ReadingsRepositoryImplementation,
+} from './Infrastructure';
 
 container.register({
   readingsRepository: asClass(ReadingsRepositoryImplementation),

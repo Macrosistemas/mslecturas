@@ -15,6 +15,7 @@ export class ReadingsRepositoryImplementation implements ReadingsRepository {
   async getAllReadings({
     filters,
   }: IGetReadingsRepository): Promise<Reading[]> {
+    console.log(filters);
     const readings = await ReadingModel.findAll({
       attributes: [
         'id',
@@ -35,39 +36,14 @@ export class ReadingsRepositoryImplementation implements ReadingsRepository {
         'id_usuario',
       ],
       where: {
-        ...(filters?.id && {
-          id: {
-            [Op.eq]: filters.id,
-          },
-        }),
-        ...(filters?.numero_medidor && {
-          numero_medidor: {
-            [Op.eq]: filters.numero_medidor,
-          },
-        }),
-        ...(filters?.numero_cliente && {
-          numero_cliente: {
-            [Op.eq]: filters.numero_cliente,
-          },
-        }),
         ...(filters?.denominacion_cliente && {
           denominacion_cliente: {
             [Op.substring]: filters.denominacion_cliente,
           },
         }),
-        ...(filters?.codigo_calle && {
-          codigo_calle: {
-            [Op.eq]: filters.codigo_calle,
-          },
-        }),
         ...(filters?.denominacion_calle && {
           denominacion_calle: {
             [Op.substring]: filters.denominacion_calle,
-          },
-        }),
-        ...(filters?.altura && {
-          altura: {
-            [Op.eq]: filters.altura,
           },
         }),
         ...(filters?.piso && {
@@ -80,39 +56,9 @@ export class ReadingsRepositoryImplementation implements ReadingsRepository {
             [Op.substring]: filters.dpto,
           },
         }),
-        ...(filters?.fecha_lectura && {
-          fecha_lectura: {
-            [Op.eq]: filters.fecha_lectura,
-          },
-        }),
-        ...(filters?.fecha_lectura_ant && {
-          fecha_lectura_ant: {
-            [Op.eq]: filters.fecha_lectura_ant,
-          },
-        }),
-        ...(filters?.lectura && {
-          lectura: {
-            [Op.eq]: filters.lectura,
-          },
-        }),
-        ...(filters?.lectura_ant && {
-          lectura_ant: {
-            [Op.eq]: filters.lectura_ant,
-          },
-        }),
         ...(filters?.bis && {
           bis: {
             [Op.substring]: filters.bis,
-          },
-        }),
-        ...(filters?.fecha_sincronizacion && {
-          fecha_sincronizacion: {
-            [Op.eq]: filters.fecha_sincronizacion,
-          },
-        }),
-        ...(filters?.id_usuario && {
-          id_usuario: {
-            [Op.eq]: filters.id_usuario,
           },
         }),
       },

@@ -13,7 +13,6 @@ import { ModuleModel } from './Database';
 
 export class ModulesRepositoryImplementation implements ModulesRepository {
   async getAllModules({ filters }: IGetModulesRepository): Promise<Module[]> {
-    console.log(filters);
     const modules = await ModuleModel.findAll({
       attributes: ['id', 'denominacion'],
       where: {
