@@ -1,7 +1,6 @@
 import { IRequestContext } from '@server/Application';
 export interface IGetAllModules extends IRequestContext {
   input?: {
-    id: number;
     denominacion: string;
   };
 }

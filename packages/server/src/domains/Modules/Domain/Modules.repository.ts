@@ -3,7 +3,6 @@ import { Module } from './Modules.entity';
 
 export interface IGetModulesRepository extends IRequestContext {
   filters?: {
-    id?: number;
     denominacion?: string;
   };
 }

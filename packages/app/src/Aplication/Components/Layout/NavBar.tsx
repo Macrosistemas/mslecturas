@@ -3,12 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUser,
   faArrowRightFromBracket,
+  faLayerGroup,
 } from '@fortawesome/free-solid-svg-icons';
 import { NavLink, NavLinkRenderProps } from 'react-router-dom';
 import { Container } from './Container';
 import { useGlobalStore } from '@app/Aplication/Hooks';
 import { TUser } from '@app/Domains/Users';
 import { Text, Title } from '../Molecules';
+import { MODULES_ROUTE } from '@app/Domains/Modules';
 
 const styleLink =
   'flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary';
@@ -52,6 +54,12 @@ export const NavBar = ({ className = '' }: { className?: string }) => {
           <NavLink to={USERS_ROUTE} className={isActiveLink}>
             <FontAwesomeIcon icon={faUser} />
             Usuarios
+          </NavLink>
+        </Container>
+        <Container className="flex flex-col gap-2 md:p-4">
+          <NavLink to={MODULES_ROUTE} className={isActiveLink}>
+            <FontAwesomeIcon icon={faLayerGroup} />
+            Módulos
           </NavLink>
         </Container>
         <Container className="flex flex-col gap-2 md:p-4">

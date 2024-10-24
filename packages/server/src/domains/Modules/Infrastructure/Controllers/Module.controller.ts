@@ -1,16 +1,22 @@
 import { procedure, protectedProcedure } from '@server/Infrastructure';
 import { ModulesService } from '../../Application';
-import { executeService, executeServiceAlone } from '@server/Application';
+import { executeService } from '@server/Application';
 import z from 'zod';
 
 export class ModuleController {
   constructor(private modulesService: ModulesService) {}
 
-  getAllModules = protectedProcedure.query(
-    executeServiceAlone(
-      this.modulesService.getAllModules.bind(this.modulesService),
-    ),
-  );
+  getAllModules = protectedProcedure
+    .input(
+      z.object({
+        denominacion: z.string().default(''),
+      }),
+    )
+    .query(
+      executeService(
+        this.modulesService.getAllModules.bind(this.modulesService),
+      ),
+    );
 
   getModule = protectedProcedure
     .input(z.number().min(1, 'ID is requerida'))

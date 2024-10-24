@@ -1,19 +1,16 @@
 import { IUseCase } from '@server/Application';
 import { Module } from '../Modules.entity';
-import {
-  IGetModulesRepository,
-  ModulesRepository,
-} from '../Modules.repository';
+import { ModulesRepository } from '../Modules.repository';
+import { IGetAllModules } from '../Modules.interfaces';
 
 export class GetAllModules implements IUseCase<Module[]> {
   constructor(private readonly modulesRepository: ModulesRepository) {}
 
-  async execute({
-    filters,
-    requestContext,
-  }: IGetModulesRepository): Promise<Module[]> {
+  async execute({ input, requestContext }: IGetAllModules): Promise<Module[]> {
+    console.log(input);
+
     return await this.modulesRepository.getAllModules({
-      filters,
+      filters: input,
       requestContext,
     });
   }
