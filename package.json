@@ -35,7 +35,10 @@
     "typescript-eslint": "^7.14.1"
   },
   "dependencies": {
+    "@types/sequelize": "^4.28.20",
     "concurrently": "^8.2.2",
+    "sequelize": "^6.37.3",
+    "sequelize-typescript": "^2.1.6",
     "uuid": "^10.0.0",
     "zod": "^3.23.8"
   },
