@@ -28,6 +28,7 @@ export class UsersController {
         mail: z.string(),
         password: z.string(),
         rePassword: z.string(),
+        role: z.string().nullable().default(null),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -61,9 +62,22 @@ export class UsersController {
         id: z.number(),
         name: z.string(),
         mail: z.string(),
+        role: z.string().nullable().default(null),
       }),
     )
     .mutation(
       executeService(this.usersService.updateUser.bind(this.usersService)),
+    );
+
+  changePassword = protectedProcedure
+    .input(
+      z.object({
+        password: z.string(),
+        newPassword: z.string(),
+        rePassword: z.string(),
+      }),
+    )
+    .mutation(
+      executeService(this.usersService.changePassword.bind(this.usersService)),
     );
 }

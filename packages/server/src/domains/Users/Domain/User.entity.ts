@@ -7,7 +7,9 @@ export class User {
     private readonly _name: UserName,
     private readonly _id?: UserId,
     private readonly _password?: UserPassword,
+    private readonly _renewPassword?: boolean,
     private readonly _userImage?: string,
+    private readonly _ownerId?: number,
     private readonly _companyLogo?: string,
     private readonly _companyName?: string,
   ) {}
@@ -17,7 +19,9 @@ export class User {
     mail,
     name,
     password,
+    renewPassword = false,
     userImage,
+    ownerId,
     companyLogo,
     companyName,
   }: IUser) {
@@ -28,7 +32,9 @@ export class User {
       new UserName(name),
       userId,
       userPassword,
+      renewPassword,
       userImage,
+      ownerId,
       companyLogo,
       companyName,
     );
@@ -43,7 +49,9 @@ export class User {
       id: this._id?.value,
       mail: this._mail.value,
       name: this._name.value,
+      renewPassword: this._renewPassword,
       userImage: this._userImage,
+      ownerId: this._ownerId,
       companyLogo: this._companyLogo,
       companyName: this._companyName,
     };

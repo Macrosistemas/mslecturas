@@ -1,4 +1,6 @@
+export * from './Indexdb';
 export * from './device';
 export * from './formatter';
 export * from './isLogged';
-export * from './manageLoggedUser';
+export * from './permissions';
+export * from './persister';

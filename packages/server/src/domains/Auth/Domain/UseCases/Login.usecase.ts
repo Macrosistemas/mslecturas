@@ -14,11 +14,21 @@ export class Login implements IUseCase<IExecuteResponse> {
       requestContext,
     });
 
-    const { id, name, mail, userImage, companyLogo, companyName } = user.values;
+    const {
+      id,
+      name,
+      mail,
+      renewPassword,
+      userImage,
+      companyLogo,
+      companyName,
+      ownerId,
+    } = user.values;
 
     const data = {
       id: id,
       user: name,
+      ownerId: ownerId,
     };
 
     const token = generateToken(data);
@@ -33,6 +43,7 @@ export class Login implements IUseCase<IExecuteResponse> {
         id,
         name,
         mail,
+        renewPassword,
         userImage: userImageResponse,
         companyLogo,
         companyName,
