@@ -3,6 +3,7 @@ import { MenuUsers } from './Users';
 import { MenuMain } from './Main';
 import { MenuAuth } from './Auth';
 import { MenuModules } from './Modules/MenuModules';
+import { MenuReadins } from './Readings/MenuReadins';
 
 export const styleLink =
   'flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary';
@@ -13,6 +14,7 @@ export const MenuAccess = () => (
       <MenuMain />
       <MenuUsers />
       <MenuModules />
+      <MenuReadins />
     </Container>
     <Container id="footer" space="small">
       <MenuAuth />
