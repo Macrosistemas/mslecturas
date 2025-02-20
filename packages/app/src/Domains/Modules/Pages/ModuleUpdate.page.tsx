@@ -20,7 +20,8 @@ export const ModuleUpdatePage = () => {
   }, [isError, navigate]);
 
   if (isError) return null;
-
+  console.log('MODULE-UPDATE-PAGE');
+  console.log(currentModule);
   return (
     <Page title="Editar registro" size="small">
       {isLoading ? (

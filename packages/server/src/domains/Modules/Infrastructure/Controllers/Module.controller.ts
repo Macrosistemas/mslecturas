@@ -8,9 +8,11 @@ export class ModuleController {
 
   getAllModules = protectedProcedure
     .input(
-      z.object({
-        denominacion: z.string().default(''),
-      }),
+      z
+        .object({
+          denominacion: z.string().default(''),
+        })
+        .optional(),
     )
     .query(
       executeService(

@@ -4,7 +4,7 @@ import { ModulesService } from '../Modules.service';
 
 export const useGetModules = () => {
   const { searchParams } = useURLParams<TModuleSearch>();
-  const { denominacion } = searchParams || {};
-  console.log(searchParams);
-  return ModulesService.getAll.useQuery({ denominacion });
+  // const { denominacion } = searchParams || {};
+
+  return ModulesService.getAll.useQuery(searchParams);
 };

@@ -15,12 +15,13 @@ import { toast } from 'sonner';
 export const ModulesDetailSearch = () => {
   const { id = '' } = useParams();
   const { currentModule, isError } = useGetModule(Number(id));
+  console.log(id);
   const navigate = useNavigate();
-
+  console.log(currentModule);
   useEffect(() => {
     if (isError) {
       navigate(MODULES_ROUTE);
-      toast.error('No se encontr� el usuario');
+      toast.error('No se encontr� el modulo');
     }
   }, [isError, navigate]);
 
@@ -29,7 +30,7 @@ export const ModulesDetailSearch = () => {
   return (
     <SheetContent className="flex flex-col gap-4 p-4">
       <SheetHeader className="text-left">
-        <SheetTitle>Detalles de Usuario</SheetTitle>
+        <SheetTitle>Detalles del Modulo</SheetTitle>
         <SheetDescription>Solo puedes ver el detalle.</SheetDescription>
       </SheetHeader>
       {currentModule ? (

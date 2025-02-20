@@ -8,6 +8,9 @@ export class GetModule implements IUseCase<Module | null> {
 
   async execute({ input, requestContext }: IGetModule): Promise<Module | null> {
     const id = input;
+    console.log('execute:id-IGetModule');
+    console.log(id);
+
     const module = await this.modulesRepository.getModule({
       id,
       requestContext,
