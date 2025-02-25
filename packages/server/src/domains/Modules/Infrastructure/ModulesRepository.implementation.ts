@@ -63,7 +63,6 @@ export class ModulesRepositoryImplementation implements ModulesRepository {
     const { id, denominacion } = module.values;
     const rowsAffected = await ModuleModel.update(
       {
-        id,
         denominacion,
       },
       { where: { id } },

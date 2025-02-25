@@ -12,14 +12,14 @@ export class UpdateModule implements IUseCase<Module> {
       id,
       denominacion,
     });
-    const module = await this.modulesRepository.create({
+    const idret = await this.modulesRepository.update({
       module: updModule,
       requestContext,
     });
 
-    if (!module) {
+    if (!idret) {
       throw new AppError('No se pudo Actualizar Registro');
     }
-    return module;
+    return updModule;
   }
 }
