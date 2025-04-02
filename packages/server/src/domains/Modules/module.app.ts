@@ -1,6 +1,9 @@
-import { container } from '@server/utils/Container';
-import { ModulesService } from './Application';
 import { asClass } from 'awilix';
+import { ModulesService } from './Application';
+import {
+  ModuleController,
+  ModulesRepositoryImplementation,
+} from './Infrastructure';
 import {
   GetAllModules,
   GetModule,
@@ -8,12 +11,9 @@ import {
   DeleteModule,
   UpdateModule,
 } from './Domain';
-import {
-  ModuleController,
-  ModulesRepositoryImplementation,
-} from './Infrastructure';
+import { container } from '@server/utils/Container';
 
-container.register({
+export const mdouleApp = {
   modulesRepository: asClass(ModulesRepositoryImplementation),
   modulesService: asClass(ModulesService),
   moduleController: asClass(ModuleController),
@@ -22,7 +22,7 @@ container.register({
   _Create: asClass(CreateModule),
   _Delete: asClass(DeleteModule),
   _Update: asClass(UpdateModule),
-});
+};
 
-export const moduleController =
+export const moduleController = () =>
   container.resolve<ModuleController>('moduleController');

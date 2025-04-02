@@ -1,13 +1,16 @@
 import { moduleController } from '../../module.app';
-const { getAllModules, createModule, deleteModule, getModule, updateModule } =
-  moduleController;
 
-export const ModuleRoutes = {
-  modules: {
-    getAll: getAllModules,
-    create: createModule,
-    delete: deleteModule,
-    update: updateModule,
-    get: getModule,
-  },
+export const ModuleRoutes = () => {
+  const { getAllModules, getModule, createModule, deleteModule, updateModule } =
+    moduleController();
+
+  return {
+    users: {
+      getAll: getAllModules,
+      create: createModule,
+      get: getModule,
+      delete: deleteModule,
+      update: updateModule,
+    },
+  };
 };

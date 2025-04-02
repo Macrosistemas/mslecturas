@@ -9,8 +9,8 @@ export class UpdateModule implements IUseCase<Module> {
   async execute({ input, requestContext }: IUpdateModule): Promise<Module> {
     const { id, denominacion } = input;
     const updModule = Module.create({
-      id,
       denominacion,
+      id,
     });
     const idret = await this.modulesRepository.update({
       module: updModule,
