@@ -5,7 +5,7 @@ export const ModuleRoutes = () => {
     moduleController();
 
   return {
-    users: {
+    modules: {
       getAll: getAllModules,
       create: createModule,
       get: getModule,
