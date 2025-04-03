@@ -1,5 +1,5 @@
 import { router } from '@server/Infrastructure/trpc';
 import { ModuleRoutes } from './ModuleRoutes';
 
-const ModulesRouter = () => router(ModuleRoutes());
-export type TModulesRouter = ReturnType<typeof ModulesRouter>;
+const ModuleRouter = () => router(ModuleRoutes());
+export type TModuleRouter = ReturnType<typeof ModuleRouter>;

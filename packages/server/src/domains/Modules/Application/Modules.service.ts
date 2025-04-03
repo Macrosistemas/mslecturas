@@ -17,9 +17,9 @@ import {
 
 export class ModulesService {
   constructor(
-    private readonly _Create: CreateModule,
-    private readonly _Delete: DeleteModule,
-    private readonly _Update: UpdateModule,
+    private readonly _create: CreateModule,
+    private readonly _delete: DeleteModule,
+    private readonly _update: UpdateModule,
     private readonly _getAllModules: GetAllModules,
     private readonly _getModule: GetModule,
   ) {}
@@ -29,7 +29,7 @@ export class ModulesService {
     requestContext,
   }: ICreateModule): Promise<Module | null> {
     return executeUseCase({
-      useCase: this._Create,
+      useCase: this._create,
       input,
       requestContext,
     });
@@ -39,7 +39,7 @@ export class ModulesService {
     requestContext,
   }: IDeleteModule): Promise<number | null> {
     return executeUseCase({
-      useCase: this._Delete,
+      useCase: this._delete,
       input,
       requestContext,
     });
@@ -50,7 +50,7 @@ export class ModulesService {
   }: IUpdateModule): Promise<Module | null> {
     console.log('updateModule');
     return executeUseCase({
-      useCase: this._Update,
+      useCase: this._update,
       input,
       requestContext,
     });

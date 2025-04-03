@@ -9,6 +9,7 @@ export const useAddModule = () => {
     onMutate: async ({ denominacion }) => {
       cacheModuleList.cancel();
       const preservedState = cacheModuleList.getData();
+      console.log('preservedState:', preservedState);
       type TData = typeof preservedState;
 
       const setState = (state: TData): TData => [
@@ -18,8 +19,9 @@ export const useAddModule = () => {
           denominacion,
         },
       ];
-
+      console.log('setState:', setState);
       cacheModuleList.setData(undefined, setState);
+      console.log('cacheModuleList:', cacheModuleList);
       return { preservedState };
     },
     onError: (_err, _variables, context) => {

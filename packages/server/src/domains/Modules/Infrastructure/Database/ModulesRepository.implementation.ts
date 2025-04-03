@@ -7,9 +7,9 @@ import {
   IUpdateModuleRepository,
   Module,
   ModulesRepository,
-} from '../Domain';
+} from '../../Domain';
 
-import { ModuleModel } from './Database';
+import { ModuleModel } from './Module.model';
 
 export class ModulesRepositoryImplementation implements ModulesRepository {
   async getAllModules({ filters }: IGetModulesRepository): Promise<Module[]> {
@@ -41,6 +41,7 @@ export class ModulesRepositoryImplementation implements ModulesRepository {
       denominacion,
     });
     if (!newModule) return null;
+    console.log(' ModulesRepositoryImplementation.create');
     return Module.create({
       id,
       denominacion,
@@ -74,6 +75,7 @@ export class ModulesRepositoryImplementation implements ModulesRepository {
 
   async delete({ id }: IDeleteModuleRepository): Promise<number | null> {
     const rowsAffected = await ModuleModel.destroy({ where: { id } });
+    console.log(' ModulesRepositoryImplementation.delete');
     if (rowsAffected === 0) return null;
     return id;
   }

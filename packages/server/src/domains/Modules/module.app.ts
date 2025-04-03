@@ -1,7 +1,7 @@
 import { asClass } from 'awilix';
 import { ModulesService } from './Application';
 import {
-  ModuleController,
+  ModulesController,
   ModulesRepositoryImplementation,
 } from './Infrastructure';
 import {
@@ -13,16 +13,16 @@ import {
 } from './Domain';
 import { container } from '@server/utils/Container';
 
-export const mdouleApp = {
+export const moduleApp = {
   modulesRepository: asClass(ModulesRepositoryImplementation),
   modulesService: asClass(ModulesService),
-  moduleController: asClass(ModuleController),
+  modulesController: asClass(ModulesController),
   _getAllModules: asClass(GetAllModules),
   _getModule: asClass(GetModule),
-  _Create: asClass(CreateModule),
-  _Delete: asClass(DeleteModule),
-  _Update: asClass(UpdateModule),
+  _create: asClass(CreateModule),
+  _delete: asClass(DeleteModule),
+  _update: asClass(UpdateModule),
 };
 
-export const moduleController = () =>
-  container.resolve<ModuleController>('moduleController');
+export const modulesController = () =>
+  container.resolve<ModulesController>('modulesController');

@@ -1,8 +1,8 @@
-import { moduleController } from '../../module.app';
+import { modulesController } from '../../module.app';
 
 export const ModuleRoutes = () => {
   const { getAllModules, getModule, createModule, deleteModule, updateModule } =
-    moduleController();
+    modulesController();
 
   return {
     modules: {

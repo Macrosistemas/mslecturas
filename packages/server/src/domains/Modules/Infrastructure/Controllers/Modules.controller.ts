@@ -3,7 +3,7 @@ import { ModulesService } from '../../Application';
 import { executeService } from '@server/Application';
 import z from 'zod';
 
-export class ModuleController {
+export class ModulesController {
   constructor(private modulesService: ModulesService) {}
 
   getAllModules = protectedProcedure

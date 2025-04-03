@@ -1,1 +1,1 @@
-export * from './Module.controller';
+export * from './Modules.controller';

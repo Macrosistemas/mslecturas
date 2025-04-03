@@ -4,15 +4,13 @@ import { router, trpcExpress, createContext } from '../trpc';
 import { AuthRoutes } from '@server/domains/Auth';
 import { PermissionsRoutes } from '@server/domains/Permissions';
 import { ModuleRoutes } from '@server/domains/Modules';
-import { ReadingRoutes } from '@server/domains/Readings';
 
 const MainRouter = () => {
   const AllRouters = {
     ...UserRoutes(),
     ...AuthRoutes(),
     ...PermissionsRoutes(),
-    ...ModuleRoutes,
-    ...ReadingRoutes,
+    ...ModuleRoutes(),
   };
   return router(AllRouters);
 };
