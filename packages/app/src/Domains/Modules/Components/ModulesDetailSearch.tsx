@@ -40,7 +40,7 @@ export const ModulesDetailSearch = () => {
               <span>Id: </span> <span>{currentModule.id}</span>
             </li>
             <li>
-              <span>Denominaci�n: </span>{' '}
+              <span>Denominación: </span>{' '}
               <span>{currentModule.denominacion}</span>
             </li>
           </ul>

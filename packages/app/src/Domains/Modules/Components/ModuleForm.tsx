@@ -73,7 +73,7 @@ export const ModuleForm = ({ editData = null }: ModuleFormProps) => {
         onSubmit={form.handleSubmit(handleSubmit)}
         className="space-y-8 m-auto"
       >
-        <FormField
+        {/*     <FormField
           name="id"
           control={form.control}
           render={({ field }) => (
@@ -89,18 +89,18 @@ export const ModuleForm = ({ editData = null }: ModuleFormProps) => {
               )}
             </FormItem>
           )}
-        ></FormField>
+        ></FormField> */}
         <FormField
           name="denominacion"
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Denominaci�n</FormLabel>
+              <FormLabel>Denominación</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
               {!formState.errors.denominacion ? (
-                <FormDescription>Denominaci�n a registrar</FormDescription>
+                <FormDescription>Denominación a registrar</FormDescription>
               ) : (
                 <FormMessage />
               )}

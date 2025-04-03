@@ -9,7 +9,7 @@ export const columns: ColumnDef<TModule>[] = [
   },
   {
     accessorKey: 'denominacion',
-    header: 'Denominaci�n',
+    header: 'Denominación',
   },
   {
     accessorKey: 'actions',
