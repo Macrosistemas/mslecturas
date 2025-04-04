@@ -41,7 +41,7 @@ export class ModulesRepositoryImplementation implements ModulesRepository {
       denominacion,
     });
     if (!newModule) return null;
-    console.log(' ModulesRepositoryImplementation.create');
+
     return Module.create({
       id,
       denominacion,

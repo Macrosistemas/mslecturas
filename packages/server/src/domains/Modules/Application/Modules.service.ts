@@ -48,7 +48,6 @@ export class ModulesService {
     input,
     requestContext,
   }: IUpdateModule): Promise<Module | null> {
-    console.log('updateModule');
     return executeUseCase({
       useCase: this._update,
       input,
