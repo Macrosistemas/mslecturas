@@ -1,7 +1,7 @@
 import { modulesController } from '../../module.app';
 
 export const ModuleRoutes = () => {
-  const { getAllModules, getModule, createModule, deleteModule, updateModule } =
+  const { getAllModules, createModule, deleteModule, getModule, updateModule } =
     modulesController();
 
   return {

@@ -41,7 +41,6 @@ export class ModulesRepositoryImplementation implements ModulesRepository {
       denominacion,
     });
     if (!newModule) return null;
-
     return Module.create({
       id,
       denominacion,
@@ -75,7 +74,6 @@ export class ModulesRepositoryImplementation implements ModulesRepository {
 
   async delete({ id }: IDeleteModuleRepository): Promise<number | null> {
     const rowsAffected = await ModuleModel.destroy({ where: { id } });
-    console.log(' ModulesRepositoryImplementation.delete');
     if (rowsAffected === 0) return null;
     return id;
   }
