@@ -15,13 +15,12 @@ import { toast } from 'sonner';
 export const ModulesDetailSearch = () => {
   const { id = '' } = useParams();
   const { currentModule, isError } = useGetModule(Number(id));
-  console.log(id);
   const navigate = useNavigate();
-  console.log(currentModule);
+
   useEffect(() => {
     if (isError) {
       navigate(MODULES_ROUTE);
-      toast.error('No se encontr� el modulo');
+      toast.error('No se encontr� el Modulos');
     }
   }, [isError, navigate]);
 
@@ -30,17 +29,18 @@ export const ModulesDetailSearch = () => {
   return (
     <SheetContent className="flex flex-col gap-4 p-4">
       <SheetHeader className="text-left">
-        <SheetTitle>Detalles del Modulo</SheetTitle>
+        <SheetTitle>Detalles de Modulos</SheetTitle>
         <SheetDescription>Solo puedes ver el detalle.</SheetDescription>
       </SheetHeader>
       {currentModule ? (
         <Card className="p-4">
           <ul>
             <li>
-              <span>Id: </span> <span>{currentModule.id}</span>
+              <span>Id: </span>
+              <span>{currentModule.id}</span>
             </li>
             <li>
-              <span>Denominación: </span>{' '}
+              <span>Denominaci�n: </span>
               <span>{currentModule.denominacion}</span>
             </li>
           </ul>

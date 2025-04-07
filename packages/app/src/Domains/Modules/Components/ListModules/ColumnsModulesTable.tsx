@@ -9,11 +9,11 @@ export const columns: ColumnDef<TModule>[] = [
   },
   {
     accessorKey: 'denominacion',
-    header: 'Denominación',
+    header: 'Denominaci�n',
   },
   {
     accessorKey: 'actions',
-    header: () => <div className="text-end">Accion</div>,
+    header: () => <div className="text-end">Acci�n</div>,
     cell: ActionsModules,
   },
 ];

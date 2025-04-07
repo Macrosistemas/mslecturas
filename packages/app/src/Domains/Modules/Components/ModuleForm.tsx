@@ -32,7 +32,6 @@ export const ModuleForm = ({ editData = null }: ModuleFormProps) => {
     id: z.number(),
     denominacion: z.string(),
   });
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,14 +43,13 @@ export const ModuleForm = ({ editData = null }: ModuleFormProps) => {
   useEffect(() => {
     if (!editData) return;
 
-    //  form.setValue('id', editData?.id);
     form.setValue('denominacion', editData?.denominacion);
   }, [editData, form]);
 
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
     if (editData) {
       mutateUpdate({
-        id: editData.id!,
+        id: values.id,
         denominacion: values.denominacion,
       });
     } else {
@@ -73,34 +71,17 @@ export const ModuleForm = ({ editData = null }: ModuleFormProps) => {
         onSubmit={form.handleSubmit(handleSubmit)}
         className="space-y-8 m-auto"
       >
-        {/*     <FormField
-          name="id"
-          control={form.control}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Id</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              {!formState.errors.id ? (
-                <FormDescription>Id a registrar</FormDescription>
-              ) : (
-                <FormMessage />
-              )}
-            </FormItem>
-          )}
-        ></FormField> */}
         <FormField
           name="denominacion"
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Denominación</FormLabel>
+              <FormLabel>Denominaci�n</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
               {!formState.errors.denominacion ? (
-                <FormDescription>Denominación a registrar</FormDescription>
+                <FormDescription>Denominaci�n a registrar</FormDescription>
               ) : (
                 <FormMessage />
               )}

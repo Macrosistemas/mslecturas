@@ -1,6 +1,5 @@
 import { Route } from 'react-router-dom';
 import { ModulesListPage, ModulesNewPage, ModuleUpdatePage } from './Pages';
-
 import { ModulesDetailSearch } from './Components';
 import {
   MODULES_ROUTE,

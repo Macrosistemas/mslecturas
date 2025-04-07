@@ -28,7 +28,9 @@ export const SearchModule = () => {
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => {
     setFilterSearch(value);
-    updateDebouncedParams({ denominacion: value });
+    updateDebouncedParams({
+      denominacion: value,
+    });
   };
 
   return (

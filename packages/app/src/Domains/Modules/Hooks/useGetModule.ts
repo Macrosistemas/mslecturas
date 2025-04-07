@@ -10,15 +10,9 @@ export const useGetModule = (id?: number) => {
   const queryModuleDetail = ModulesService.get.useQuery(id || 0, {
     enabled: false,
   });
-  console.log('searchParams');
-  console.log(searchParams);
-
   const cacheModulesList = useCacheModules();
-  console.log('cacheModulesList');
-  console.log(cacheModulesList);
   const { isFetched, isFetching, refetch } = queryModuleDetail;
-  console.log('useGetModule:id');
-  console.log(id);
+
   const cachedModules = useMemo(
     () =>
       cacheModulesList
@@ -26,8 +20,7 @@ export const useGetModule = (id?: number) => {
         ?.find((module) => module.id === id) || null,
     [cacheModulesList, id, searchParams],
   );
-  console.log('cachedModules');
-  console.log(cachedModules);
+
   useEffect(() => {
     if (cachedModules) {
       setCurrentModule(cachedModules);
