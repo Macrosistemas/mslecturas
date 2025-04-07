@@ -49,7 +49,7 @@ export const ModuleForm = ({ editData = null }: ModuleFormProps) => {
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
     if (editData) {
       mutateUpdate({
-        id: values.id,
+        id: editData.id!,
         denominacion: values.denominacion,
       });
     } else {
