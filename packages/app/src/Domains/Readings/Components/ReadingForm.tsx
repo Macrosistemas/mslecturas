@@ -50,8 +50,8 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
       .pipe(z.number().min(1, 'El valor debe ser mayor a 1')),
     piso: z.string(),
     dpto: z.string(),
-    fecha_lectura: z.string(),
-    fecha_lectura_ant: z.string(),
+    fecha_lectura: z.date(),
+    fecha_lectura_ant: z.date(),
     lectura: z
       .string()
       .transform(Number)
@@ -61,7 +61,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
       .transform(Number)
       .pipe(z.number().min(1, 'El valor debe ser mayor a 1')),
     bis: z.string(),
-    fecha_sincronizacion: z.string(),
+    fecha_sincronizacion: z.date(),
     id_usuario: z
       .string()
       .transform(Number)
@@ -79,12 +79,12 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
       altura: 0,
       piso: '',
       dpto: '',
-      fecha_lectura: new Date(0).toISOString(),
-      fecha_lectura_ant: new Date(0).toISOString(),
+      fecha_lectura: new Date(0),
+      fecha_lectura_ant: new Date(0),
       lectura: 0,
       lectura_ant: 0,
       bis: '',
-      fecha_sincronizacion: new Date(0).toISOString(),
+      fecha_sincronizacion: new Date(0),
       id_usuario: 0,
     },
   });
@@ -100,22 +100,23 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
     form.setValue('altura', editData?.altura);
     form.setValue('piso', editData?.piso);
     form.setValue('dpto', editData?.dpto);
-    form.setValue('fecha_lectura', editData.fecha_lectura.toISOString());
-    form.setValue(
-      'fecha_lectura_ant',
-      editData?.fecha_lectura_ant.toISOString(),
-    );
+    form.setValue('fecha_lectura', editData.fecha_lectura);
+    form.setValue('fecha_lectura_ant', editData?.fecha_lectura_ant);
     form.setValue('lectura', editData?.lectura);
     form.setValue('lectura_ant', editData?.lectura_ant);
     form.setValue('bis', editData?.bis);
     form.setValue(
       'fecha_sincronizacion',
-      editData?.fecha_sincronizacion?.toISOString() || '',
+      editData?.fecha_sincronizacion || new Date(0),
     );
     form.setValue('id_usuario', editData?.id_usuario);
   }, [editData, form]);
 
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
+    const fecha_lectura = values.fecha_lectura.toString();
+    const fecha_lectura_ant = values.fecha_lectura_ant.toString();
+    const fecha_sincronizacion = values.fecha_sincronizacion.toString();
+
     if (editData) {
       mutateUpdate({
         id: editData.id!,
@@ -127,16 +128,21 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
         altura: values.altura,
         piso: values.piso,
         dpto: values.dpto,
-        fecha_lectura: values.fecha_lectura,
-        fecha_lectura_ant: values.fecha_lectura_ant,
+        fecha_lectura,
+        fecha_lectura_ant,
         lectura: values.lectura,
         lectura_ant: values.lectura_ant,
         bis: values.bis,
-        fecha_sincronizacion: values.fecha_sincronizacion,
+        fecha_sincronizacion,
         id_usuario: values.id_usuario,
       });
     } else {
-      mutate(values);
+      mutate({
+        ...values,
+        fecha_lectura,
+        fecha_lectura_ant,
+        fecha_sincronizacion,
+      });
     }
     navigate(READINGS_ROUTE);
   };
@@ -301,7 +307,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Fecha de Lectura</FormLabel>
               <FormControl>
-                <Input type="date" {...field} />
+                <Input type="date" {...field} value={field.value.toString()} />
               </FormControl>
               {!formState.errors.fecha_lectura ? (
                 <FormDescription>Fecha de Lectura a registrar</FormDescription>
@@ -318,7 +324,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Fecha de Lectura Anterior</FormLabel>
               <FormControl>
-                <Input type="date" {...field} />
+                <Input type="date" {...field} value={field.value.toString()} />
               </FormControl>
               {!formState.errors.fecha_lectura_ant ? (
                 <FormDescription>
@@ -388,7 +394,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Fecha Sincronizaci�n</FormLabel>
               <FormControl>
-                <Input type="date" {...field} />
+                <Input type="date" {...field} value={field.value.toString()} />
               </FormControl>
               {!formState.errors.fecha_sincronizacion ? (
                 <FormDescription>
