@@ -5,8 +5,6 @@ import { useCacheReadings } from './useCacheReadings';
 import { useURLParams } from '@app/Aplication/Hooks/useURLParams';
 
 export const useGetReading = (id?: number) => {
-  console.log('useGetReading');
-  console.log(id);
   const { searchParams } = useURLParams<TReadingSearch>();
   const [currentReading, setCurrentReading] = useState<TReading | null>(null);
   const queryReadingDetail = ReadingsService.get.useQuery(id || 0, {

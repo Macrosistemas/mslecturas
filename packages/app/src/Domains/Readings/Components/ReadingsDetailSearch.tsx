@@ -15,13 +15,12 @@ import { toast } from 'sonner';
 export const ReadingsDetailSearch = () => {
   const { id = '' } = useParams();
   const { currentReading, isError } = useGetReading(Number(id));
-
   const navigate = useNavigate();
 
   useEffect(() => {
     if (isError) {
       navigate(READINGS_ROUTE);
-      toast.error('No se encontr� el Lectura');
+      toast.error('No se encontr� el Lecturas');
     }
   }, [isError, navigate]);
 
@@ -30,68 +29,75 @@ export const ReadingsDetailSearch = () => {
   return (
     <SheetContent className="flex flex-col gap-4 p-4">
       <SheetHeader className="text-left">
-        <SheetTitle>Detalles de Lectura</SheetTitle>
+        <SheetTitle>Detalles de Lecturas</SheetTitle>
         <SheetDescription>Solo puedes ver el detalle.</SheetDescription>
       </SheetHeader>
       {currentReading ? (
         <Card className="p-4">
           <ul>
             <li>
-              <span>Id: </span> <span>{currentReading.id}</span>
+              <span>Id: </span>
+              <span>{currentReading.id}</span>
             </li>
             <li>
-              <span>Numero Medidor: </span>{' '}
+              <span>Numero Medidor: </span>
               <span>{currentReading.numero_medidor}</span>
             </li>
             <li>
-              <span>Numero Cliente: </span>{' '}
+              <span>Numero Cliente: </span>
               <span>{currentReading.numero_cliente}</span>
             </li>
             <li>
-              <span>Denominacion Cliente: </span>{' '}
+              <span>Denominacion Cliente: </span>
               <span>{currentReading.denominacion_cliente}</span>
             </li>
             <li>
-              <span>Codigo de Calle: </span>{' '}
+              <span>Codigo de Calle: </span>
               <span>{currentReading.codigo_calle}</span>
             </li>
             <li>
-              <span>Denominacion Calle: </span>{' '}
+              <span>Denominacion Calle: </span>
               <span>{currentReading.denominacion_calle}</span>
             </li>
             <li>
-              <span>Altura: </span> <span>{currentReading.altura}</span>
+              <span>Altura: </span>
+              <span>{currentReading.altura}</span>
             </li>
             <li>
-              <span>Piso: </span> <span>{currentReading.piso}</span>
+              <span>Piso: </span>
+              <span>{currentReading.piso}</span>
             </li>
             <li>
-              <span>Dpto: </span> <span>{currentReading.dpto}</span>
+              <span>Dpto: </span>
+              <span>{currentReading.dpto}</span>
             </li>
             <li>
-              <span>Fecha de Lectura: </span>{' '}
-              <span>{currentReading.fecha_lectura}</span>
+              <span>Fecha de Lectura: </span>
+              <span>{currentReading.fecha_lectura.toISOString()}</span>
             </li>
             <li>
-              <span>Fecha de Lectura Anterior: </span>{' '}
-              <span>{currentReading.fecha_lectura_ant}</span>
+              <span>Fecha de Lectura Anterior: </span>
+              <span>{currentReading.fecha_lectura_ant.toISOString()}</span>
             </li>
             <li>
-              <span>Lectura: </span> <span>{currentReading.lectura}</span>
+              <span>Lectura: </span>
+              <span>{currentReading.lectura}</span>
             </li>
             <li>
-              <span>Lectura Anterior: </span>{' '}
+              <span>Lectura Anterior: </span>
               <span>{currentReading.lectura_ant}</span>
             </li>
             <li>
-              <span>Bis: </span> <span>{currentReading.bis}</span>
+              <span>Bis: </span>
+              <span>{currentReading.bis}</span>
             </li>
             <li>
-              <span>Fecha Sincronizaci�n: </span>{' '}
-              <span>{currentReading.fecha_sincronizacion}</span>
+              <span>Fecha Sincronizaci�n: </span>
+              <span>{currentReading.fecha_sincronizacion?.toString()}</span>
             </li>
             <li>
-              <span>Id Usuario: </span> <span>{currentReading.id_usuario}</span>
+              <span>Id Usuario: </span>
+              <span>{currentReading.id_usuario}</span>
             </li>
           </ul>
         </Card>

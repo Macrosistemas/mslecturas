@@ -3,18 +3,20 @@ import { ReadingsService } from '../../Application';
 import { executeService } from '@server/Application';
 import z from 'zod';
 
-export class ReadingController {
+export class ReadingsController {
   constructor(private readingsService: ReadingsService) {}
 
   getAllReadings = protectedProcedure
     .input(
-      z.object({
-        denominacion_cliente: z.string().default(''),
-        denominacion_calle: z.string().default(''),
-        piso: z.string().default(''),
-        dpto: z.string().default(''),
-        bis: z.string().default(''),
-      }),
+      z
+        .object({
+          denominacion_cliente: z.string().default(''),
+          denominacion_calle: z.string().default(''),
+          piso: z.string().default(''),
+          dpto: z.string().default(''),
+          bis: z.string().default(''),
+        })
+        .optional(),
     )
     .query(
       executeService(

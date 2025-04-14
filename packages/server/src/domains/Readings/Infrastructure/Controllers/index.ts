@@ -1,1 +1,1 @@
-export * from './Reading.controller';
+export * from './Readings.controller';

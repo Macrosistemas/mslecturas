@@ -43,14 +43,14 @@ export class UpdateReading implements IUseCase<Reading> {
       fecha_sincronizacion,
       id_usuario,
     });
-    const reading = await this.readingsRepository.create({
+    const idret = await this.readingsRepository.update({
       reading: updReading,
       requestContext,
     });
 
-    if (!reading) {
+    if (!idret) {
       throw new AppError('No se pudo Actualizar Registro');
     }
-    return reading;
+    return updReading;
   }
 }

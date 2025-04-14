@@ -20,7 +20,23 @@ export const SearchReading = () => {
   // Initialize URL update params.
   const { searchParams, updateDebouncedParams } =
     useURLParams<TReadingSearch>(READINGS_ROUTE);
-  const [filterSearch, setFilterSearch] = useState(searchParams?.name || '');
+  const [filterSearch, setFilterSearch] = useState(
+    //searchParams?.numero_medidor || '' ,
+    //searchParams?.numero_cliente || '' ,
+    searchParams?.denominacion_cliente || '',
+    //searchParams?.codigo_calle || '' ,
+    //searchParams?.denominacion_calle || '' ,
+    //searchParams?.altura || '' ,
+    //searchParams?.piso || '' ,
+    //searchParams?.dpto || '' ,
+    //searchParams?.fecha_lectura || '' ,
+    //searchParams?.fecha_lectura_ant || '' ,
+    //searchParams?.lectura || '' ,
+    //searchParams?.lectura_ant || '' ,
+    //searchParams?.bis || '' ,
+    //searchParams?.fecha_sincronizacion || '' ,
+    //searchParams?.id_usuario || '' ,
+  );
 
   const to =
     (readingId && READINGS_SEARCH_DETAIL_ROUTE.replace(':id', readingId)) || '';
@@ -29,7 +45,23 @@ export const SearchReading = () => {
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => {
     setFilterSearch(value);
-    updateDebouncedParams({ name: value });
+    updateDebouncedParams({
+      //numero_medidor: value
+      //, numero_cliente: value
+      denominacion_cliente: value,
+      // , codigo_calle: value
+      //, denominacion_calle: value
+      //, altura: value
+      //, piso: value
+      //, dpto: value
+      //, fecha_lectura: value
+      //, fecha_lectura_ant: value
+      //, lectura: value
+      //, lectura_ant: value
+      //, bis: value
+      //, fecha_sincronizacion: value
+      //, id_usuario: value
+    });
   };
 
   return (

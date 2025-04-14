@@ -7,15 +7,14 @@ import {
   IUpdateReadingRepository,
   Reading,
   ReadingsRepository,
-} from '../Domain';
+} from '../../Domain';
 
-import { ReadingModel } from './Database';
+import { ReadingModel } from './Reading.model';
 
 export class ReadingsRepositoryImplementation implements ReadingsRepository {
   async getAllReadings({
     filters,
   }: IGetReadingsRepository): Promise<Reading[]> {
-    console.log(filters);
     const readings = await ReadingModel.findAll({
       attributes: [
         'id',
@@ -227,7 +226,6 @@ export class ReadingsRepositoryImplementation implements ReadingsRepository {
     } = reading.values;
     const rowsAffected = await ReadingModel.update(
       {
-        id,
         numero_medidor,
         numero_cliente,
         denominacion_cliente,

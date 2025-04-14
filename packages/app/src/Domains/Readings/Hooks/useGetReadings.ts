@@ -4,6 +4,5 @@ import { ReadingsService } from '../Readings.service';
 
 export const useGetReadings = () => {
   const { searchParams } = useURLParams<TReadingSearch>();
-
   return ReadingsService.getAll.useQuery(searchParams);
 };

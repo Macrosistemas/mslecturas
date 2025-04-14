@@ -1,18 +1,21 @@
-import { readingController } from '../../reading.app';
-const {
-  getAllReadings,
-  createReading,
-  deleteReading,
-  getReading,
-  updateReading,
-} = readingController;
+import { readingsController } from '../../reading.app';
 
-export const ReadingRoutes = {
-  readings: {
-    getAll: getAllReadings,
-    create: createReading,
-    delete: deleteReading,
-    update: updateReading,
-    get: getReading,
-  },
+export const ReadingRoutes = () => {
+  const {
+    getAllReadings,
+    createReading,
+    deleteReading,
+    getReading,
+    updateReading,
+  } = readingsController();
+
+  return {
+    readings: {
+      getAll: getAllReadings,
+      create: createReading,
+      get: getReading,
+      delete: deleteReading,
+      update: updateReading,
+    },
+  };
 };
