@@ -13,7 +13,7 @@ import {
 } from '@app/Aplication/Components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@app/Aplication/Components/ui/input';
-import { Button, Container, DatePicker } from '@app/Aplication/Components';
+import { Button, Container } from '@app/Aplication/Components';
 
 import { READINGS_ROUTE } from '../Readings.routes';
 import { useEffect } from 'react';
@@ -308,7 +308,14 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Fecha de Lectura :</FormLabel>
               <FormControl>
-                <DatePicker onClose={() => true} />
+                <Input
+                  type="date"
+                  {...field}
+                  value={
+                    field.value ? field.value.toISOString().split('T')[0] : ''
+                  }
+                  onChange={(e) => field.onChange(new Date(e.target.value))}
+                />
               </FormControl>
               {!formState.errors.fecha_lectura ? (
                 <FormDescription>Fecha de Lectura a registrar</FormDescription>
@@ -325,7 +332,14 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Fecha de Lectura Anterior</FormLabel>
               <FormControl>
-                <DatePicker onClose={() => true} />
+                <Input
+                  type="date"
+                  {...field}
+                  value={
+                    field.value ? field.value.toISOString().split('T')[0] : ''
+                  }
+                  onChange={(e) => field.onChange(new Date(e.target.value))}
+                />
               </FormControl>
               {!formState.errors.fecha_lectura_ant ? (
                 <FormDescription>
@@ -395,7 +409,14 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Fecha Sincronizaci�n</FormLabel>
               <FormControl>
-                <DatePicker onClose={() => true} />
+                <Input
+                  type="date"
+                  {...field}
+                  value={
+                    field.value ? field.value.toISOString().split('T')[0] : ''
+                  }
+                  onChange={(e) => field.onChange(new Date(e.target.value))}
+                />
               </FormControl>
               {!formState.errors.fecha_sincronizacion ? (
                 <FormDescription>
