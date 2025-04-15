@@ -18,6 +18,7 @@ import { Button, Container } from '@app/Aplication/Components';
 import { READINGS_ROUTE } from '../Readings.routes';
 import { useEffect } from 'react';
 import { TReading } from '../Reading.entity';
+import { formatInputDate } from '@app/Aplication/Helpers/formatInputDate';
 
 interface ReadingFormProps {
   editData?: TReading | null;
@@ -30,42 +31,21 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
 
   const formSchema = z.object({
     id: z.number(),
-    numero_medidor: z
-      .string()
-      .transform(Number)
-      .pipe(z.number().min(1, 'El valor debe ser mayor a 1')),
-    numero_cliente: z
-      .string()
-      .transform(Number)
-      .pipe(z.number().min(1, 'El valor debe ser mayor a 1')),
+    numero_medidor: z.coerce.number().min(1, 'El valor debe ser mayor a 1'),
+    numero_cliente: z.coerce.number().min(1, 'El valor debe ser mayor a 1'),
     denominacion_cliente: z.string(),
-    codigo_calle: z
-      .string()
-      .transform(Number)
-      .pipe(z.number().min(1, 'El valor debe ser mayor a 1')),
+    codigo_calle: z.coerce.number().min(1, 'El valor debe ser mayor a 1'),
     denominacion_calle: z.string(),
-    altura: z
-      .string()
-      .transform(Number)
-      .pipe(z.number().min(1, 'El valor debe ser mayor a 1')),
+    altura: z.coerce.number().min(1, 'El valor debe ser mayor a 1'),
     piso: z.string(),
     dpto: z.string(),
     fecha_lectura: z.date(),
     fecha_lectura_ant: z.date(),
-    lectura: z
-      .string()
-      .transform(Number)
-      .pipe(z.number().min(1, 'El valor debe ser mayor a 1')),
-    lectura_ant: z
-      .string()
-      .transform(Number)
-      .pipe(z.number().min(1, 'El valor debe ser mayor a 1')),
+    lectura: z.coerce.number().min(1, 'El valor debe ser mayor a 1'),
+    lectura_ant: z.coerce.number().min(1, 'El valor debe ser mayor a 1'),
     bis: z.string(),
     fecha_sincronizacion: z.date(),
-    id_usuario: z
-      .string()
-      .transform(Number)
-      .pipe(z.number().min(1, 'El valor debe ser mayor a 1')),
+    id_usuario: z.coerce.number().min(1, 'El valor debe ser mayor a 1'),
   });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -79,12 +59,12 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
       altura: 0,
       piso: '',
       dpto: '',
-      fecha_lectura: new Date(0),
-      fecha_lectura_ant: new Date(0),
+      fecha_lectura: new Date(),
+      fecha_lectura_ant: new Date(),
       lectura: 0,
       lectura_ant: 0,
       bis: '',
-      fecha_sincronizacion: new Date(0),
+      fecha_sincronizacion: new Date(),
       id_usuario: 0,
     },
   });
@@ -167,7 +147,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Numero Medidor</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} type="number" />
               </FormControl>
               {!formState.errors.numero_medidor ? (
                 <FormDescription>Numero Medidor a registrar</FormDescription>
@@ -311,9 +291,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
                 <Input
                   type="date"
                   {...field}
-                  value={
-                    field.value ? field.value.toISOString().split('T')[0] : ''
-                  }
+                  value={formatInputDate(field.value)}
                   onChange={(e) => field.onChange(new Date(e.target.value))}
                 />
               </FormControl>
@@ -335,9 +313,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
                 <Input
                   type="date"
                   {...field}
-                  value={
-                    field.value ? field.value.toISOString().split('T')[0] : ''
-                  }
+                  value={formatInputDate(field.value)}
                   onChange={(e) => field.onChange(new Date(e.target.value))}
                 />
               </FormControl>
@@ -412,9 +388,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
                 <Input
                   type="date"
                   {...field}
-                  value={
-                    field.value ? field.value.toISOString().split('T')[0] : ''
-                  }
+                  value={formatInputDate(field.value)}
                   onChange={(e) => field.onChange(new Date(e.target.value))}
                 />
               </FormControl>
