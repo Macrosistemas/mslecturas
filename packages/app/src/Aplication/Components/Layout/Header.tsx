@@ -39,7 +39,7 @@ export const Header = () => {
         />
         <Container space="none">
           <Title variant="h3" className="text-primary">
-            GestDoc
+            Lecturas
           </Title>
         </Container>
       </Container>

@@ -13,7 +13,7 @@ import {
 } from '@app/Aplication/Components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@app/Aplication/Components/ui/input';
-import { Button, Container } from '@app/Aplication/Components';
+import { Button, Container, DatePicker } from '@app/Aplication/Components';
 
 import { READINGS_ROUTE } from '../Readings.routes';
 import { useEffect } from 'react';
@@ -300,14 +300,15 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             </FormItem>
           )}
         ></FormField>
+        *{' '}
         <FormField
           name="fecha_lectura"
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Fecha de Lectura</FormLabel>
+              <FormLabel>Fecha de Lectura :</FormLabel>
               <FormControl>
-                <Input type="date" {...field} value={field.value.toString()} />
+                <DatePicker onClose={() => true} />
               </FormControl>
               {!formState.errors.fecha_lectura ? (
                 <FormDescription>Fecha de Lectura a registrar</FormDescription>
@@ -324,7 +325,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Fecha de Lectura Anterior</FormLabel>
               <FormControl>
-                <Input type="date" {...field} value={field.value.toString()} />
+                <DatePicker onClose={() => true} />
               </FormControl>
               {!formState.errors.fecha_lectura_ant ? (
                 <FormDescription>
@@ -394,11 +395,11 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Fecha Sincronizaci�n</FormLabel>
               <FormControl>
-                <Input type="date" {...field} value={field.value.toString()} />
+                <DatePicker onClose={() => true} />
               </FormControl>
               {!formState.errors.fecha_sincronizacion ? (
                 <FormDescription>
-                  Fecha Sincronizaci�n a registrar
+                  Fecha Sincronización a registrar
                 </FormDescription>
               ) : (
                 <FormMessage />
