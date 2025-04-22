@@ -164,7 +164,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Numero Cliente</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} type="number" />
               </FormControl>
               {!formState.errors.numero_cliente ? (
                 <FormDescription>Numero Cliente a registrar</FormDescription>
@@ -200,7 +200,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Codigo de Calle</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} type="number" />
               </FormControl>
               {!formState.errors.codigo_calle ? (
                 <FormDescription>Codigo de Calle a registrar</FormDescription>
@@ -236,7 +236,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Altura</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} type="number" />
               </FormControl>
               {!formState.errors.altura ? (
                 <FormDescription>Altura a registrar</FormDescription>
@@ -292,7 +292,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
                   type="date"
                   {...field}
                   value={formatInputDate(field.value)}
-                  onChange={(e) => field.onChange(new Date(e.target.value))}
+                  onBlur={(e) => field.onChange(new Date(e.target.value))}
                 />
               </FormControl>
               {!formState.errors.fecha_lectura ? (
@@ -314,7 +314,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
                   type="date"
                   {...field}
                   value={formatInputDate(field.value)}
-                  onChange={(e) => field.onChange(new Date(e.target.value))}
+                  onBlur={(e) => field.onChange(new Date(e.target.value))}
                 />
               </FormControl>
               {!formState.errors.fecha_lectura_ant ? (
@@ -334,7 +334,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Lectura</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} type="number" />
               </FormControl>
               {!formState.errors.lectura ? (
                 <FormDescription>Lectura a registrar</FormDescription>
@@ -351,7 +351,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Lectura Anterior</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} type="number" />
               </FormControl>
               {!formState.errors.lectura_ant ? (
                 <FormDescription>Lectura Anterior a registrar</FormDescription>
@@ -389,7 +389,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
                   type="date"
                   {...field}
                   value={formatInputDate(field.value)}
-                  onChange={(e) => field.onChange(new Date(e.target.value))}
+                  onBlur={(e) => field.onChange(new Date(e.target.value))}
                 />
               </FormControl>
               {!formState.errors.fecha_sincronizacion ? (

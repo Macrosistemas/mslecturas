@@ -1,6 +1,7 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { ActionsReadings } from './ActionReadings';
 import { TReading } from '../../Reading.entity';
+import { formatDate } from '@app/Aplication/Helpers/formatInputDate';
 
 export const columns: ColumnDef<TReading>[] = [
   {
@@ -42,10 +43,12 @@ export const columns: ColumnDef<TReading>[] = [
   {
     accessorKey: 'fecha_lectura',
     header: 'Fecha de Lectura',
+    cell: ({ getValue }) => formatDate(getValue() as Date),
   },
   {
     accessorKey: 'fecha_lectura_ant',
     header: 'Fecha de Lectura Anterior',
+    cell: ({ getValue }) => formatDate(getValue() as Date),
   },
   {
     accessorKey: 'lectura',
@@ -61,7 +64,8 @@ export const columns: ColumnDef<TReading>[] = [
   },
   {
     accessorKey: 'fecha_sincronizacion',
-    header: 'Fecha Sincronizaci�n',
+    header: 'Fecha Sincronización',
+    cell: ({ getValue }) => formatDate(getValue() as Date),
   },
   {
     accessorKey: 'id_usuario',
@@ -69,7 +73,7 @@ export const columns: ColumnDef<TReading>[] = [
   },
   {
     accessorKey: 'actions',
-    header: () => <div className="text-end">Acci�n</div>,
+    header: () => <div className="text-end">Acción</div>,
     cell: ActionsReadings,
   },
 ];
