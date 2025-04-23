@@ -39,12 +39,12 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
     altura: z.coerce.number().min(1, 'El valor debe ser mayor a 1'),
     piso: z.string(),
     dpto: z.string(),
-    fecha_lectura: z.date(),
-    fecha_lectura_ant: z.date(),
+    fecha_lectura: z.string().min(1, 'Ingrese una fecha'),
+    fecha_lectura_ant: z.string().min(1, 'Ingrese una fecha'),
     lectura: z.coerce.number().min(1, 'El valor debe ser mayor a 1'),
     lectura_ant: z.coerce.number().min(1, 'El valor debe ser mayor a 1'),
     bis: z.string(),
-    fecha_sincronizacion: z.date(),
+    fecha_sincronizacion: z.string().min(1, 'Ingrese una fecha'),
     id_usuario: z.coerce.number().min(1, 'El valor debe ser mayor a 1'),
   });
   const form = useForm<z.infer<typeof formSchema>>({
@@ -59,12 +59,12 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
       altura: 0,
       piso: '',
       dpto: '',
-      fecha_lectura: new Date(),
-      fecha_lectura_ant: new Date(),
+      fecha_lectura: formatInputDate(new Date()),
+      fecha_lectura_ant: formatInputDate(new Date()),
       lectura: 0,
       lectura_ant: 0,
       bis: '',
-      fecha_sincronizacion: new Date(),
+      fecha_sincronizacion: formatInputDate(new Date()),
       id_usuario: 0,
     },
   });
@@ -80,14 +80,17 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
     form.setValue('altura', editData?.altura);
     form.setValue('piso', editData?.piso);
     form.setValue('dpto', editData?.dpto);
-    form.setValue('fecha_lectura', editData.fecha_lectura);
-    form.setValue('fecha_lectura_ant', editData?.fecha_lectura_ant);
+    form.setValue('fecha_lectura', formatInputDate(editData.fecha_lectura));
+    form.setValue(
+      'fecha_lectura_ant',
+      formatInputDate(editData?.fecha_lectura_ant),
+    );
     form.setValue('lectura', editData?.lectura);
     form.setValue('lectura_ant', editData?.lectura_ant);
     form.setValue('bis', editData?.bis);
     form.setValue(
       'fecha_sincronizacion',
-      editData?.fecha_sincronizacion || new Date(0),
+      formatInputDate(editData?.fecha_sincronizacion || new Date(0)),
     );
     form.setValue('id_usuario', editData?.id_usuario);
   }, [editData, form]);
@@ -181,7 +184,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Denominacion Cliente</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} className="block" />
               </FormControl>
               {!formState.errors.denominacion_cliente ? (
                 <FormDescription>
@@ -288,12 +291,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Fecha de Lectura :</FormLabel>
               <FormControl>
-                <Input
-                  type="date"
-                  {...field}
-                  value={formatInputDate(field.value)}
-                  onBlur={(e) => field.onChange(new Date(e.target.value))}
-                />
+                <Input type="date" {...field} className="block" />
               </FormControl>
               {!formState.errors.fecha_lectura ? (
                 <FormDescription>Fecha de Lectura a registrar</FormDescription>
@@ -310,12 +308,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Fecha de Lectura Anterior</FormLabel>
               <FormControl>
-                <Input
-                  type="date"
-                  {...field}
-                  value={formatInputDate(field.value)}
-                  onBlur={(e) => field.onChange(new Date(e.target.value))}
-                />
+                <Input type="date" {...field} className="block" />
               </FormControl>
               {!formState.errors.fecha_lectura_ant ? (
                 <FormDescription>
@@ -385,12 +378,7 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
             <FormItem>
               <FormLabel>Fecha Sincronizaci�n</FormLabel>
               <FormControl>
-                <Input
-                  type="date"
-                  {...field}
-                  value={formatInputDate(field.value)}
-                  onBlur={(e) => field.onChange(new Date(e.target.value))}
-                />
+                <Input type="date" {...field} className="block" />
               </FormControl>
               {!formState.errors.fecha_sincronizacion ? (
                 <FormDescription>
