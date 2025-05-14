@@ -27,28 +27,7 @@ export const ReadingUpdatePage = () => {
         <Text.Small>Buscando registro</Text.Small>
       ) : (
         <Card className="p-4">
-          <ReadingForm
-            editData={
-              currentReading && {
-                id: currentReading.id,
-                numero_medidor: currentReading.numero_medidor,
-                numero_cliente: currentReading.numero_cliente,
-                denominacion_cliente: currentReading.denominacion_cliente,
-                codigo_calle: currentReading.codigo_calle,
-                denominacion_calle: currentReading.denominacion_calle,
-                altura: currentReading.altura,
-                piso: currentReading.piso,
-                dpto: currentReading.dpto,
-                fecha_lectura: currentReading.fecha_lectura,
-                fecha_lectura_ant: currentReading.fecha_lectura_ant,
-                lectura: currentReading.lectura,
-                lectura_ant: currentReading.lectura_ant,
-                bis: currentReading.bis,
-                fecha_sincronizacion: currentReading.fecha_sincronizacion,
-                id_usuario: currentReading.id_usuario,
-              }
-            }
-          />
+          <ReadingForm editData={currentReading} />
         </Card>
       )}
     </Page>

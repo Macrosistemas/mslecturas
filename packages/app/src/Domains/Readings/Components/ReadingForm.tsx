@@ -72,27 +72,27 @@ export const ReadingForm = ({ editData = null }: ReadingFormProps) => {
   useEffect(() => {
     if (!editData) return;
 
-    form.setValue('numero_medidor', editData?.numero_medidor);
-    form.setValue('numero_cliente', editData?.numero_cliente);
-    form.setValue('denominacion_cliente', editData?.denominacion_cliente);
-    form.setValue('codigo_calle', editData?.codigo_calle);
-    form.setValue('denominacion_calle', editData?.denominacion_calle);
-    form.setValue('altura', editData?.altura);
-    form.setValue('piso', editData?.piso);
-    form.setValue('dpto', editData?.dpto);
-    form.setValue('fecha_lectura', formatInputDate(editData.fecha_lectura));
-    form.setValue(
-      'fecha_lectura_ant',
-      formatInputDate(editData?.fecha_lectura_ant),
-    );
-    form.setValue('lectura', editData?.lectura);
-    form.setValue('lectura_ant', editData?.lectura_ant);
-    form.setValue('bis', editData?.bis);
-    form.setValue(
-      'fecha_sincronizacion',
-      formatInputDate(editData?.fecha_sincronizacion || new Date(0)),
-    );
-    form.setValue('id_usuario', editData?.id_usuario);
+    form.reset({
+      numero_medidor: editData?.numero_medidor || 0,
+      numero_cliente: editData?.numero_cliente || 0,
+      denominacion_cliente: editData?.denominacion_cliente || '',
+      codigo_calle: editData?.codigo_calle || 0,
+      denominacion_calle: editData?.denominacion_calle || '',
+      altura: editData?.altura || 0,
+      piso: editData?.piso || '',
+      dpto: editData?.dpto || '',
+      fecha_lectura: formatInputDate(editData?.fecha_lectura || new Date()),
+      fecha_lectura_ant: formatInputDate(
+        editData?.fecha_lectura_ant || new Date(),
+      ),
+      lectura: editData?.lectura || 0,
+      lectura_ant: editData?.lectura_ant || 0,
+      bis: editData?.bis || '',
+      fecha_sincronizacion: formatInputDate(
+        editData?.fecha_sincronizacion || new Date(0),
+      ),
+      id_usuario: editData?.id_usuario || 0,
+    });
   }, [editData, form]);
 
   const handleSubmit = (values: z.infer<typeof formSchema>) => {
