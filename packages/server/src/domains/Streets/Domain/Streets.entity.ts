@@ -1,12 +1,12 @@
 import { IStreet } from './Streets.interfaces';
 export class Street {
   constructor(
-    private readonly _id: number,
-    private readonly _denominacion?: string,
+    private readonly _denominacion: string,
+    private readonly _id?: number,
   ) {}
 
-  static create({ id, denominacion }: IStreet): Street {
-    return new Street(id, denominacion);
+  static create({ denominacion, id }: IStreet): Street {
+    return new Street(denominacion, id);
   }
 
   toJSON() {

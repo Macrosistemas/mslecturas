@@ -23,6 +23,6 @@ export interface IDeleteStreet extends IRequestContext {
   input: number;
 }
 export interface IStreet {
-  id: number;
-  denominacion?: string;
+  denominacion: string;
+  id?: number;
 }
