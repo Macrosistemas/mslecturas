@@ -9,8 +9,8 @@ export class CreateStreet implements IUseCase<Street> {
   async execute({ input, requestContext }: ICreateStreet): Promise<Street> {
     const { id, denominacion } = input;
     const newStreet = Street.create({
-      id,
       denominacion,
+      id,
     });
     const street = await this.streetsRepository.create({
       street: newStreet,

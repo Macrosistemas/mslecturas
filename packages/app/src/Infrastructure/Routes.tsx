@@ -2,6 +2,7 @@ import { AuthRouter } from '@app/Domains/Auth';
 import { MainRouter } from '@app/Domains/Main';
 import { ModulesRouter } from '@app/Domains/Modules';
 import { ReadingsRouter } from '@app/Domains/Readings';
+import { StreetsRouter } from '@app/Domains/Streets';
 import { UsersRouter } from '@app/Domains/Users';
 
 export const AllRoutes = [
@@ -10,4 +11,5 @@ export const AllRoutes = [
   UsersRouter,
   ModulesRouter,
   ReadingsRouter,
+  StreetsRouter,
 ];

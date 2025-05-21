@@ -10,8 +10,8 @@ export class StreetModel extends Model<
   InferAttributes<StreetModel>,
   InferCreationAttributes<StreetModel>
 > {
-  declare id: number;
-  declare denominacion: CreationOptional<string>;
+  declare id: CreationOptional<number>;
+  declare denominacion: string;
 }
 
 StreetModel.init(

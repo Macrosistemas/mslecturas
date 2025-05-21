@@ -6,8 +6,8 @@ export interface IGetAllStreets extends IRequestContext {
 }
 export interface ICreateStreet extends IRequestContext {
   input: {
+    denominacion: string;
     id: number;
-    denominacion?: string;
   };
 }
 export interface IGetStreet extends IRequestContext {
