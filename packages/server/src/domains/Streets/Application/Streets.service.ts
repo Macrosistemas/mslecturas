@@ -1,4 +1,8 @@
-import { executeUseCase } from '@server/Application';
+import {
+  executeUseCase,
+  ISelect,
+  TransformToSelect,
+} from '@server/Application';
 import {
   CreateStreet,
   DeleteStreet,
@@ -58,12 +62,14 @@ export class StreetsService {
   async getAllStreets({
     input,
     requestContext,
-  }: IGetAllStreets): Promise<Street[]> {
-    return executeUseCase({
+  }: IGetAllStreets): Promise<ISelect[]> {
+    const data = await executeUseCase({
       useCase: this._getAllStreets,
       input,
       requestContext,
     });
+
+    return TransformToSelect(data, 'denominacion');
   }
 
   async getStreet({
